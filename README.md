@@ -99,6 +99,7 @@ Run the GUI:
 ```bash
 python gui/main.py
 ```
+---
 
 ## Usage
 
@@ -108,17 +109,21 @@ python gui/main.py
 
 - Visualize CFGs: Use "Optimize and Visualize SSA" buttons.
 
-## 👥 Contributors
+---
 
-Abdullah Daoud (22I-2626) – Parser, SSA Translation, Loop Unrolling
+## 👨‍💻 Contributors
+- **Abdullah Daoud (22I-2626)**  
+- **Usman Ali (22I-2725)**  
+- **Faizan Rasheed (22I-2734)**
 
-Usman Ali (22I-2725) – SMT Formulation, Z3 Integration, Equivalence Checking
+---
 
-Faizan Rasheed (22I-2734) – GUI Development, CFG Visualization, Optimizations
+## ⚖️ License
+This project is for **academic and personal skill development purposes only**.  
+Reuse is allowed for **learning and research** with proper credit.
 
-## 📝 License
+---
 
-This project is for academic purposes under the FAST-NUCES Department of Software Engineering. Use and adapt for learning/research with proper credit.
 
 ## ⚠️ Limitations
 
@@ -129,3 +134,5 @@ This project is for academic purposes under the FAST-NUCES Department of Softwar
 - GUI lacks interactivity in visualizations and export features.
 
 - For improvements, see the project report (Tool Report.pdf).
+
+---
