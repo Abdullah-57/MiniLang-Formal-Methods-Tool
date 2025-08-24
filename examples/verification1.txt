@@ -1,0 +1,65 @@
+x := 3;
+y := x + 2;
+z := x + 2;
+if (y > 4) {
+    t := y + 1;
+} else {
+    t := y - 1;
+}
+assert(t > 0);
+
+
+
+
+
+
+SSA
+x_1 := 3
+y_1 := x_1 + 2
+z_1 := x_1 + 2
+if_cond_1 := y_1 > 4
+t_1 := y_1 + 1
+t_2 := y_1 - 1
+t_3 := φ(if_cond_1, t_1, t_2)
+assert := t_3 > 0
+
+
+Optimized SSA
+x_1 := 3
+y_1 := 5
+if_cond_1 := True
+t_1 := 6
+t_2 := 4
+t_3 := φ(True, 6, 4)
+assert := t_3 > 0
+
+
+
+Z3
+Assertions hold.
+Assertions hold. Example model: [t_1 = 6,
+ z_1 = 5,
+ x_1 = 3,
+ y_1 = 5,
+ if_cond_1 = True,
+ t_2 = 4,
+ t_3 = 6]
+
+
+
+
+
+
+Bubble Sort Example
+for (i := 0; i < n; i := i + 1) {
+    for (j := 0; j < n - i - 1; j := j + 1) {
+        if (arr[j] > arr[j+1]) {
+            temp := arr[j];
+            arr[j] := arr[j+1];
+            arr[j+1] := temp;
+        }
+    }
+}
+for (k := 0; k < n - 1; k := k + 1) {
+    assert (arr[k] <= arr[k+1]);
+}

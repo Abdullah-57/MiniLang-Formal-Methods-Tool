@@ -1,0 +1,75 @@
+x := 0;
+for (i := 0; i < 2; i := i + 1) {
+    x := x + a;
+}
+
+
+x := a + a + a;
+
+output variables: x,x
+unrolling depth: 2
+
+
+
+Program 1 SSA
+x_1 := 0
+i_1 := 0
+i_2 := φ(i_1, i_3)
+x_2 := φ(x_1, x_3)
+for_cond := i_2 < 2
+x_3 := x_2 + a_0
+i_3 := i_2 + 1
+
+
+Program 2 SSA
+x_1 := a_0 + a_0 + a_0
+
+Program 1 Optimized SSA:
+x_1 := 0
+i_1 := 0
+if_cond_1 := True
+x_2 := 0 + a_0
+i_2 := 1
+i_3 := φ(True, 1, 0)
+x_3 := φ(True, x_2, 0)
+if_cond_2 := i_3 < 2
+x_4 := x_3 + a_0
+x_5 := φ(if_cond_2, x_4, x_3)
+
+Program 2 Optimized SSA:
+x_1 := a_0 + a_0 + a_0
+
+
+
+Z3
+Programs are not equivalent.
+Counterexample 1: [i_3_p1 = 1,
+ i_5_p1 = 2,
+ if_cond_3_p1 = False,
+ i_1_p1 = 0,
+ i_2_p1 = 1,
+ x_3_p1 = 1,
+ x_1_p1 = 0,
+ x_5_p1 = 2,
+ a_0 = 1,
+ x_1_p2 = 3,
+ x_4_p1 = 2,
+ i_4_p1 = 2,
+ if_cond_2_p1 = True,
+ x_2_p1 = 1,
+ if_cond_1_p1 = True]
+Counterexample 2: [i_3_p1 = 1,
+ i_5_p1 = 2,
+ if_cond_3_p1 = False,
+ i_1_p1 = 0,
+ i_2_p1 = 1,
+ x_3_p1 = 2,
+ x_1_p1 = 0,
+ x_5_p1 = 4,
+ a_0 = 2,
+ x_1_p2 = 6,
+ x_4_p1 = 4,
+ i_4_p1 = 2,
+ if_cond_2_p1 = True,
+ x_2_p1 = 2,
+ if_cond_1_p1 = True]

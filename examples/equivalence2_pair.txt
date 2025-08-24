@@ -1,0 +1,53 @@
+a := 1;
+b := a + 1;
+c := b * x;
+d := b * x;
+e := d + 3;
+
+
+p := 2;
+q := p * x;
+r := q + 3;
+
+output variables: e,r
+unrolling depth: 0
+
+
+
+Program 1 SSA
+a_1 := 1
+b_1 := a_1 + 1
+c_1 := b_1 * x_0
+d_1 := b_1 * x_0
+e_1 := d_1 + 3
+
+Program 2 SSA
+p_1 := 2
+q_1 := p_1 * x_0
+r_1 := q_1 + 3
+
+Program 1 Optimized SSA:
+a_1 := 1
+b_1 := 2
+d_1 := 2 * x_0
+e_1 := d_1 + 3
+
+Program 2 Optimized SSA:
+p_1 := 2
+q_1 := 2 * x_0
+r_1 := q_1 + 3
+
+
+
+Z3
+Programs are equivalent.
+Programs are equivalent.
+Example model: [x_0 = 0,
+ r_1_p2 = 3,
+ p_1_p2 = 2,
+ e_1_p1 = 3,
+ b_1_p1 = 2,
+ c_1_p1 = 0,
+ q_1_p2 = 0,
+ a_1_p1 = 1,
+ d_1_p1 = 0]

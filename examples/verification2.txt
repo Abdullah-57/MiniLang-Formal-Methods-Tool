@@ -1,0 +1,67 @@
+a := 0;
+for (i := 0; i < 3; i := i + 1) {
+    if (i == 1) {
+        a := a + 2;
+    } else {
+        a := a + 1;
+    }
+}
+assert(a >= 3);
+
+unrolling depth: 2
+
+SSA
+a_1 := 0
+i_1 := 0
+a_2 := φ(a_1, a_5)
+i_2 := φ(i_1, i_3)
+for_cond := i_2 < 3
+if_cond_1 := i_2 == 1
+a_3 := a_2 + 2
+a_4 := a_2 + 1
+a_5 := φ(if_cond_1, a_3, a_4)
+i_3 := i_2 + 1
+assert := a_5 >= 3
+
+
+
+Optimized SSA
+a_1 := 0
+i_1 := 0
+if_cond_1 := True
+if_cond_2 := 0 == 1
+a_2 := 2
+a_3 := 1
+a_4 := φ(if_cond_2, 2, 1)
+i_2 := 1
+a_5 := φ(True, a_4, 0)
+i_3 := φ(True, 1, 0)
+if_cond_3 := i_3 < 3
+if_cond_4 := i_3 == 1
+a_6 := a_5 + 2
+a_7 := a_5 + 1
+a_8 := φ(if_cond_4, a_6, a_7)
+a_9 := φ(if_cond_3, a_8, a_5)
+assert := a_9 >= 3
+
+
+Z3 
+Assertions hold.
+Assertions hold. Example model: [a_3 = 1,
+ a_2 = 2,
+ a_6 = 3,
+ i_5 = 2,
+ if_cond_2 = False,
+ a_5 = 1,
+ i_2 = 1,
+ a_7 = 2,
+ i_1 = 0,
+ i_4 = 2,
+ a_1 = 0,
+ i_3 = 1,
+ if_cond_4 = True,
+ a_8 = 3,
+ if_cond_1 = True,
+ a_9 = 3,
+ if_cond_3 = True,
+ a_4 = 1]

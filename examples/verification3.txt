@@ -1,0 +1,41 @@
+x := n;
+if (x < 10) {
+    y := x + 1;
+} else {
+    y := x - 1;
+}
+assert(y < 9);
+
+
+SSA
+x_1 := n_0
+if_cond_1 := x_1 < 10
+y_1 := x_1 + 1
+y_2 := x_1 - 1
+y_3 := φ(if_cond_1, y_1, y_2)
+assert := y_3 < 9
+
+
+Optimized SSA
+x_1 := n_0
+if_cond_1 := x_1 < 10
+y_1 := x_1 + 1
+y_2 := x_1 - 1
+y_3 := φ(if_cond_1, y_1, y_2)
+assert := y_3 < 9
+
+
+Z3
+Assertions do not hold.
+[n_0 = 8,
+ y_2 = 7,
+ if_cond_1 = True,
+ y_3 = 9,
+ x_1 = 8,
+ y_1 = 9]
+[n_0 = 9,
+ y_2 = 8,
+ if_cond_1 = True,
+ y_3 = 10,
+ x_1 = 9,
+ y_1 = 10]

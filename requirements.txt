@@ -1,0 +1,4 @@
+PyQt5==5.15.10
+z3-solver==4.12.5
+pygments          # Syntax highlighting (optional)
+graphviz          # For visualizing control/data flow graphs
